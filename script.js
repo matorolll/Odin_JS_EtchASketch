@@ -22,7 +22,6 @@ inputSliderBoardSize.addEventListener('input', () => {
 });
 
 
-
 //Mouse events
 document.addEventListener('contextmenu', (event) => {
   event.preventDefault();
