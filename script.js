@@ -1,4 +1,3 @@
-
 //options
 const inputSliderSquareSize = document.getElementById('sliderSquareSize');
 const outputsliderSquareSize = document.getElementById('sliderSquareSizeValue');
@@ -7,7 +6,6 @@ let squareSize = inputSliderSquareSize.value
 const inputSliderBoardSize = document.getElementById('sliderBoardSize');
 const outputsliderBoardSize = document.getElementById('sliderBoardSizeValue');
 let boardSize = inputSliderBoardSize.value
-
 
 inputSliderSquareSize.addEventListener('input', () => {
     squareSize = inputSliderSquareSize.value
@@ -20,6 +18,45 @@ inputSliderBoardSize.addEventListener('input', () => {
     outputsliderBoardSize.textContent = `${boardSize}`;
     createDrawingBoard(squareSize,boardSize)
 });
+
+//color
+const colorPickerPrimary = document.getElementById('colorPickerPrimary')
+let firstColor = colorPickerPrimary.value
+colorPickerPrimary.addEventListener('input', (event) => {
+    firstColor = event.target.value;
+})
+
+const colorPickerSecondary = document.getElementById('colorPickerSecondary')
+let secondColor = colorPickerSecondary.value
+colorPickerSecondary.addEventListener('input', (event) => {
+    secondColor = event.target.value;
+})
+
+const colorPickerThird = document.getElementById('colorPickerThird')
+let thirdColor = colorPickerThird.value
+colorPickerThird.addEventListener('input', (event) => {
+    thirdColor = event.target.value;
+})
+
+const colorBoxes = document.querySelectorAll('.color-box');
+colorBoxes.forEach(colorBox => {
+    colorBox.addEventListener('mousedown', function(event) {
+        selectedColor = getComputedStyle(colorBox).backgroundColor;
+        const hexColor = rgbToHex(selectedColor);
+        console.log('Selected color (hex):', hexColor);
+        if (event.button === 0) {
+            firstColor = hexColor;
+            colorPickerPrimary.value = hexColor;      
+        } else if (event.button === 1) {
+            thirdColor = hexColor;
+            colorPickerThird.value = hexColor;
+        } else if (event.button === 2) {
+            secondColor = hexColor;
+            colorPickerSecondary.value = hexColor;
+        }
+    });
+});
+
 
 
 //Mouse events
@@ -72,26 +109,24 @@ addEventListenerToBoard = () => {
     squares.forEach(square => {
         square.addEventListener('mouseenter', () => {
             if (isLeftMousePressed) {
-                square.style.backgroundColor = 'red';
+                square.style.backgroundColor = firstColor;
             } else if (isRightMousePressed) {
-                square.style.backgroundColor = 'blue';
+                square.style.backgroundColor = secondColor;
             } else if (isCenterMousePressed) {
-                square.style.backgroundColor = 'lightgray';
+                square.style.backgroundColor = thirdColor;
             }
         });
 
         square.addEventListener('mousedown', (event) => {
             if (event.button === 0) {
-                square.style.backgroundColor = 'red';
-                changeAdjacentColors(square)
-            } else if (event.button === 1) {
-                square.style.backgroundColor = 'lightgray';
+                square.style.backgroundColor = firstColor;
+                //changeAdjacentColors(square)
             } else if (event.button === 2) {
-                square.style.backgroundColor = 'blue';
+                square.style.backgroundColor = secondColor;
+            } else if (event.button === 1) {
+                square.style.backgroundColor = thirdColor;
             }
         });
-
-
 
     });
 };
@@ -110,30 +145,26 @@ function changeAdjacentColors(clickedDiv) {
     
     adjacentIndices.forEach(index => {
         if (index >= 0 && index < allDivs.length) {
-            allDivs[index].style.backgroundColor = 'blue';
+            allDivs[index].style.backgroundColor = secondColor;
         }
     });
     
     const lowerIndex = clickedIndex + squareSize;
     if (lowerIndex < allDivs.length) {
-        allDivs[lowerIndex].style.backgroundColor = 'blue';
+        allDivs[lowerIndex].style.backgroundColor = secondColor;
     }
 }
 
 
 
-
-
-    //div.addEventListener('contentmenu', (event)=>{
-    //    if(event.button===2){
-    //        div.style.backgroundColor = 'lightgray';
-    //    }
-    //})
-
-    //div.addEventListener('mouseleave', ()=>{
-    //    if(!isMousePressed){
-    //       div.style.backgroundColor = 'lightgray';
-    //  }
-    //})  
+//Help funtion
+function rgbToHex(rgbColor) {
+    const rgbValues = rgbColor.match(/\d+/g);
+    const r = parseInt(rgbValues[0]);
+    const g = parseInt(rgbValues[1]);
+    const b = parseInt(rgbValues[2]);
+    const hexValue = ((r << 16) | (g << 8) | b).toString(16).padStart(6, '0');
+    return '#' + hexValue.toUpperCase();
+}
 
 createDrawingBoard(squareSize,boardSize)
