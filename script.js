@@ -80,8 +80,51 @@ addEventListenerToBoard = () => {
                 square.style.backgroundColor = 'lightgray';
             }
         });
+
+        square.addEventListener('mousedown', (event) => {
+            if (event.button === 0) {
+                square.style.backgroundColor = 'red';
+                changeAdjacentColors(square)
+            } else if (event.button === 1) {
+                square.style.backgroundColor = 'lightgray';
+            } else if (event.button === 2) {
+                square.style.backgroundColor = 'blue';
+            }
+        });
+
+
+
     });
 };
+
+
+function changeAdjacentColors(clickedDiv) {
+    const allDivs = document.querySelectorAll('.grid-item');
+    const clickedIndex = Array.from(allDivs).indexOf(clickedDiv);
+    
+    const adjacentIndices = [
+        clickedIndex - 1,
+        clickedIndex + 1,
+        clickedIndex - squareSize,
+        clickedIndex + squareSize
+    ];
+    
+    adjacentIndices.forEach(index => {
+        if (index >= 0 && index < allDivs.length) {
+            allDivs[index].style.backgroundColor = 'blue';
+        }
+    });
+    
+    const lowerIndex = clickedIndex + squareSize;
+    if (lowerIndex < allDivs.length) {
+        allDivs[lowerIndex].style.backgroundColor = 'blue';
+    }
+}
+
+
+
+
+
     //div.addEventListener('contentmenu', (event)=>{
     //    if(event.button===2){
     //        div.style.backgroundColor = 'lightgray';
