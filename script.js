@@ -85,6 +85,18 @@ radioBrushType.forEach(radio => {
 });
 
 
+//Random color checkbox
+const checkboxRandomColor = document.getElementById("checkboxRandomColor");
+let randomColor = false;
+checkboxRandomColor.addEventListener("change", function() {
+    if (checkboxRandomColor.checked) {
+        randomColor = true;
+    } else {   
+        randomColor = false;
+    }
+});
+
+
 //Mouse events
 document.addEventListener('contextmenu', (event) => {
   event.preventDefault();
@@ -167,6 +179,10 @@ function changeColor(clickedDiv, color) {
     const allDivs = document.querySelectorAll('.grid-item');
     const clickedIndex = Array.from(allDivs).indexOf(clickedDiv);
 
+    if(randomColor){
+        color = generateRandomColor();
+    }
+
     function colorAdjacentDivs(index, depth) {
         let adjacentIndices = []
         if (depth <= 0){
@@ -217,6 +233,15 @@ function rgbToHex(rgbColor) {
     const hexValue = ((r << 16) | (g << 8) | b).toString(16).padStart(6, '0');
     return '#' + hexValue.toUpperCase();
 }
+
+function generateRandomColor() {
+    const letters = '0123456789ABCDEF';
+    let color = '#';
+    for (let i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+  }
 
 createDrawingBoard(squareSize,boardSize)
 
