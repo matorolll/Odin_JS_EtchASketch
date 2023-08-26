@@ -142,6 +142,16 @@ addEventListenerToBoard = () => {
     });
 };
 
+    //const adjacentIndices = [
+    //    clickedIndex,
+    //    clickedIndex - 1 * (brushSize-1),
+    //    clickedIndex + 1 * (brushSize-1),
+    //    clickedIndex - squareSize * (brushSize-1),
+    //    clickedIndex + squareSize * (brushSize-1)
+    //];
+
+
+
 
 
 
@@ -149,14 +159,48 @@ function changeColor(clickedDiv, color) {
     const allDivs = document.querySelectorAll('.grid-item');
     const clickedIndex = Array.from(allDivs).indexOf(clickedDiv);
 
-    const adjacentIndices = [
-        clickedIndex,
-        clickedIndex - 1 * (brushSize-1),
-        clickedIndex + 1 * (brushSize-1),
-        clickedIndex - squareSize * (brushSize-1),
-        clickedIndex + squareSize * (brushSize-1)
-    ];
-    
+
+
+    //rekurencyjnie od kliknietego na boki, glebia to brushsize
+    let adjacentIndices = []
+    if (brushSize == 1){
+        adjacentIndices.push(clickedIndex)
+    }
+    if (brushSize == 2){
+        adjacentIndices.push(
+            clickedIndex,
+            clickedIndex - 1 * (brushSize-1),
+            clickedIndex + 1 * (brushSize-1),
+            clickedIndex - squareSize * (brushSize-1),
+            clickedIndex + squareSize * (brushSize-1) 
+        )
+    }
+    if (brushSize == 3){
+        adjacentIndices.push(
+            clickedIndex,
+            clickedIndex - 1 * (brushSize-1),
+            clickedIndex + 1 * (brushSize-1),
+            clickedIndex - squareSize * (brushSize-1),
+            clickedIndex + squareSize * (brushSize-1),
+
+            clickedIndex - 1 * (brushSize-2),
+            clickedIndex + 1 * (brushSize-2),
+            clickedIndex - squareSize * (brushSize-2),
+            clickedIndex + squareSize * (brushSize-2),
+
+
+            (clickedIndex - squareSize * (brushSize-2)) -1,
+            (clickedIndex + squareSize * (brushSize-2)) -1,
+
+            (clickedIndex - squareSize * (brushSize-2)) +1,
+            (clickedIndex + squareSize * (brushSize-2)) +1,
+        )
+    }  
+
+
+
+
+
 
     
     adjacentIndices.forEach(index => {
