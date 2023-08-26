@@ -50,6 +50,15 @@ colorPickerThird.addEventListener('input', (event) => {
     thirdColor = event.target.value;
 })
 
+const radioBrushType = document.getElementsByName('radioBrushType');
+let brushType = 'star';
+radioBrushType.forEach(radio => {
+    radio.addEventListener('change', (event) => {
+        brushType = event.target.value;
+  });
+});
+
+
 const colorBoxes = document.querySelectorAll('.color-box');
 colorBoxes.forEach(colorBox => {
     colorBox.addEventListener('mousedown', function(event) {
@@ -146,21 +155,37 @@ addEventListenerToBoard = () => {
 function changeColor(clickedDiv, color) {
     const allDivs = document.querySelectorAll('.grid-item');
     const clickedIndex = Array.from(allDivs).indexOf(clickedDiv);
-    
+
     function colorAdjacentDivs(index, depth) {
+        let adjacentIndices = []
         if (depth <= 0){
             allDivs[index].style.backgroundColor = color;
             return;
         } 
-            
-        const adjacentIndices = [
-            index,
-            index - squareSize,
-            index + squareSize * 1,
-            index - 1,
-            index + 1,
-        ];
-    
+        if(brushType == 'star'){
+            adjacentIndices.push(
+                index,
+                index - squareSize,
+                index + squareSize * 1,
+                index - 1,
+                index + 1
+            );
+        }
+        else if(brushType == 'square'){
+            adjacentIndices.push(
+                index,
+                index - squareSize,
+                index + squareSize * 1,
+                index - 1,
+                index + 1,
+
+                index - squareSize -1,
+                index + squareSize * 1 -1,
+                index - squareSize + 1,
+                index + squareSize * 1 + 1
+            );
+        }
+
         adjacentIndices.forEach(adjIndex => {
             if (adjIndex >= 0 && adjIndex < allDivs.length) {
                 allDivs[adjIndex].style.backgroundColor = color;
@@ -183,3 +208,9 @@ function rgbToHex(rgbColor) {
 }
 
 createDrawingBoard(squareSize,boardSize)
+
+
+
+
+
+
