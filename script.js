@@ -1,16 +1,8 @@
-//options
+////Options////
+//Number of squares
 const inputSliderSquareSize = document.getElementById('sliderSquareSize');
 const outputsliderSquareSize = document.getElementById('sliderSquareSizeValue');
 let squareSize = inputSliderSquareSize.value
-
-const inputSliderBoardSize = document.getElementById('sliderBoardSize');
-const outputsliderBoardSize = document.getElementById('sliderBoardSizeValue');
-let boardSize = inputSliderBoardSize.value
-
-const inputBrushSize = document.getElementById('sliderBrushSize');
-const outputBrushSize = document.getElementById('sliderBrushSizeValue');
-let brushSize = inputBrushSize.value
-
 
 inputSliderSquareSize.addEventListener('input', () => {
     squareSize = inputSliderSquareSize.value
@@ -18,20 +10,20 @@ inputSliderSquareSize.addEventListener('input', () => {
     createDrawingBoard(squareSize,boardSize)
 });
 
+
+//Size of drawing board
+const inputSliderBoardSize = document.getElementById('sliderBoardSize');
+const outputsliderBoardSize = document.getElementById('sliderBoardSizeValue');
+let boardSize = inputSliderBoardSize.value
+
 inputSliderBoardSize.addEventListener('input', () => {
     boardSize = inputSliderBoardSize.value
     outputsliderBoardSize.textContent = `${boardSize}`;
     createDrawingBoard(squareSize,boardSize)
 });
 
-inputBrushSize.addEventListener('input', () => {
-    brushSize = inputBrushSize.value
-    outputBrushSize.textContent = `${brushSize}`;
-});
 
-
-
-//color
+//Color picker for mouse buttons
 const colorPickerPrimary = document.getElementById('colorPickerPrimary')
 let firstColor = colorPickerPrimary.value
 colorPickerPrimary.addEventListener('input', (event) => {
@@ -50,15 +42,8 @@ colorPickerThird.addEventListener('input', (event) => {
     thirdColor = event.target.value;
 })
 
-const radioBrushType = document.getElementsByName('radioBrushType');
-let brushType = 'star';
-radioBrushType.forEach(radio => {
-    radio.addEventListener('change', (event) => {
-        brushType = event.target.value;
-  });
-});
 
-
+//Quick color picker
 const colorBoxes = document.querySelectorAll('.color-box');
 colorBoxes.forEach(colorBox => {
     colorBox.addEventListener('mousedown', function(event) {
@@ -78,6 +63,26 @@ colorBoxes.forEach(colorBox => {
     });
 });
 
+
+//Size of brush
+const inputBrushSize = document.getElementById('sliderBrushSize');
+const outputBrushSize = document.getElementById('sliderBrushSizeValue');
+let brushSize = inputBrushSize.value
+
+inputBrushSize.addEventListener('input', () => {
+    brushSize = inputBrushSize.value
+    outputBrushSize.textContent = `${brushSize}`;
+});
+
+
+//Brush type
+const radioBrushType = document.getElementsByName('radioBrushType');
+let brushType = 'star';
+radioBrushType.forEach(radio => {
+    radio.addEventListener('change', (event) => {
+        brushType = event.target.value;
+  });
+});
 
 
 //Mouse events
@@ -106,7 +111,10 @@ document.addEventListener('mousedown', (event) => {
 });
 
 
-//Grid events
+
+
+////Grid////
+//Drawing X divs
 createDrawingBoard = (squareSize,boardSize) =>{
     const gridContainer = document.getElementById("gridContainer")
     const trueSquareSize = boardSize/squareSize;
@@ -124,6 +132,8 @@ createDrawingBoard = (squareSize,boardSize) =>{
     addEventListenerToBoard()
 }
 
+
+//Adding events to board
 addEventListenerToBoard = () => {
     const squares = document.querySelectorAll('.grid-item');
     
@@ -152,6 +162,7 @@ addEventListenerToBoard = () => {
 };
 
 
+//Changing color, type and size of brush
 function changeColor(clickedDiv, color) {
     const allDivs = document.querySelectorAll('.grid-item');
     const clickedIndex = Array.from(allDivs).indexOf(clickedDiv);
