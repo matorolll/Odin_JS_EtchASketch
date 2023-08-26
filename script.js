@@ -142,79 +142,34 @@ addEventListenerToBoard = () => {
     });
 };
 
-    //const adjacentIndices = [
-    //    clickedIndex,
-    //    clickedIndex - 1 * (brushSize-1),
-    //    clickedIndex + 1 * (brushSize-1),
-    //    clickedIndex - squareSize * (brushSize-1),
-    //    clickedIndex + squareSize * (brushSize-1)
-    //];
-
-
-
-
-
 
 function changeColor(clickedDiv, color) {
     const allDivs = document.querySelectorAll('.grid-item');
     const clickedIndex = Array.from(allDivs).indexOf(clickedDiv);
-
-
-
-    //rekurencyjnie od kliknietego na boki, glebia to brushsize
-    let adjacentIndices = []
-    if (brushSize == 1){
-        adjacentIndices.push(clickedIndex)
-    }
-    if (brushSize == 2){
-        adjacentIndices.push(
-            clickedIndex,
-            clickedIndex - 1 * (brushSize-1),
-            clickedIndex + 1 * (brushSize-1),
-            clickedIndex - squareSize * (brushSize-1),
-            clickedIndex + squareSize * (brushSize-1) 
-        )
-    }
-    if (brushSize == 3){
-        adjacentIndices.push(
-            clickedIndex,
-            clickedIndex - 1 * (brushSize-1),
-            clickedIndex + 1 * (brushSize-1),
-            clickedIndex - squareSize * (brushSize-1),
-            clickedIndex + squareSize * (brushSize-1),
-
-            clickedIndex - 1 * (brushSize-2),
-            clickedIndex + 1 * (brushSize-2),
-            clickedIndex - squareSize * (brushSize-2),
-            clickedIndex + squareSize * (brushSize-2),
-
-
-            (clickedIndex - squareSize * (brushSize-2)) -1,
-            (clickedIndex + squareSize * (brushSize-2)) -1,
-
-            (clickedIndex - squareSize * (brushSize-2)) +1,
-            (clickedIndex + squareSize * (brushSize-2)) +1,
-        )
-    }  
-
-
-
-
-
-
     
-    adjacentIndices.forEach(index => {
-        if (index >= 0 && index < allDivs.length) {
+    function colorAdjacentDivs(index, depth) {
+        if (depth <= 0){
             allDivs[index].style.backgroundColor = color;
-        }
-    });
+            return;
+        } 
+            
+        const adjacentIndices = [
+            index,
+            index - squareSize,
+            index + squareSize * 1,
+            index - 1,
+            index + 1,
+        ];
     
-    const lowerIndex = clickedIndex + squareSize;
-    if (lowerIndex < allDivs.length) {
-        allDivs[lowerIndex].style.backgroundColor = color;
+        adjacentIndices.forEach(adjIndex => {
+            if (adjIndex >= 0 && adjIndex < allDivs.length) {
+                allDivs[adjIndex].style.backgroundColor = color;
+                colorAdjacentDivs(adjIndex, depth - 1);
+            }
+        });
     }
+    colorAdjacentDivs(clickedIndex, brushSize -1);
 }
-
 
 
 //Help funtion
