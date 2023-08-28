@@ -2,11 +2,51 @@ body{
     background-color: black;
 }
 
+nav{
+    color:white;
+    display:flex;
+    justify-content:center;
+    font-size:44px;
+    font-weight:900;
+    padding:0px;
+    margin:20px;
+
+}
+
+.title{
+    color:white;
+    background-color: rgb(55, 54, 54);
+    text-align: center;
+    padding:5px;
+}
+
+.settingsLable{
+    flex:1;
+}
+.settingsValue{
+    flex:2;
+}
+
+.settingsOption{
+    display: flex; 
+
+    background-color: rgb(32, 31, 31);
+    padding:2% 5%;
+}
+
 .slider{
     color:white;
+    float: left;
+    width:28%;
 }
 
 .grid-container{
+    display: flex; 
+    float: left;
+
+    background-color: gray;
+    justify-content: center;
+
     display:grid;
     grid-template-columns: repeat(16, 50px);
     grid-template-rows: repeat(16, 50px);
@@ -20,9 +60,9 @@ body{
 
 .color-box{
     display: inline-block;
-    width: 50px;
-    height: 30px;
-    margin: 5px;
+    width: 20px;
+    height: 20px;
+    margin: 2px;
     border: 1px solid black;
     cursor: pointer;
 }
@@ -30,3 +70,4 @@ body{
 .center-label {
     text-align: center;
 }
+

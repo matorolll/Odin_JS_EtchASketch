@@ -8,48 +8,102 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <nav>Etch A Sketch</nav>
+
     <div class="slider">
-        <label for="sliderSquareSize">Number of square:</label>
-        <input type="range" id="sliderSquareSize" name="sliderSquareSize" min="2" max="100" step="2" value="16">
-        <span id="sliderSquareSizeValue">16x16</span>
-    </br>
-        <label for="sliderBoardSize">Size of drawing board:</label>
-        <input type="range" id="sliderBoardSize" name="sliderBoardSize" min="100" max="1600" step="100" value="800">
-        <span id="sliderBoardSizeValue">800</span>
-    </br>
-        <label for="colorPickerPrimary">Color Primary:</label>
-        <input type="color" id="colorPickerPrimary" value="#ff0000">
+        <div class="settingsCategory">
+            <div class="title">Board options</div>
+            <div class="settingsOption">
+                <label for="sliderSquareSize" class="settingsLable">Number of square</label>
+                <div class="settingsValue">
+                    <input type="range" id="sliderSquareSize" name="sliderSquareSize" min="2" max="100" step="2" value="16">
+                    <span id="sliderSquareSizeValue">16x16</span>
+                </div>
+            </div>
+            <div class="settingsOption">
+                <label for="sliderBoardSize" class="settingsLable">Size of drawing board</label>
+                <div class="settingsValue">
+                    <input type="range" id="sliderBoardSize" name="sliderBoardSize" min="100" max="1600" step="100" value="800">
+                    <span id="sliderBoardSizeValue">800</span>
+                </div>
+            </div>
+        </div>
 
-        <label for="colorPickerSecondary">Color Secondary:</label>
-        <input type="color" id="colorPickerSecondary" value="#0000ff">
+        <div class="settingsCategory">
+            <div class="title">Color options</div>
+            <div class="settingsOption">
+                <label for="colorPickerPrimary" class="settingsLable">Color Primary</label>
+                <div class="settingsValue">
+                    <input type="color" id="colorPickerPrimary" value="#ff0000">
+                </div>
+            </div>
+            <div class="settingsOption">
+                <label for="colorPickerSecondary" class="settingsLable">Color Secondary</label>
+                <div class="settingsValue">
+                    <input type="color" id="colorPickerSecondary" value="#0000ff">
+                </div>
+            </div>
+            <div class="settingsOption">
+                <label for="colorPickerThird" class="settingsLable">Color Third</label>
+                <div class="settingsValue">
+                    <input type="color" id="colorPickerThird" value="#ffffff">
+                </div>
+            </div>
+            <div class="settingsOption">
+                <label class="settingsLable">Quick color picker</label>
+                <div class="settingsValue">
+                    <div class="color-box" style="background-color: #ff0000;"></div>
+                    <div class="color-box" style="background-color: #00ff00;"></div>
+                    <div class="color-box" style="background-color: #ffff00;"></div>
+                    <div class="color-box" style="background-color: #0000ff;"></div>
+                    <div class="color-box" style="background-color: #ffffff;"></div>
 
-        <label for="colorPickerThird">Color Third:</label>
-        <input type="color" id="colorPickerThird" value="#ffffff">
+                </div>
+            </div>
+        </div>
+    
 
-    </br>
-        <label>Quick color picker</label>
-        <div class="color-box" style="background-color: #ff0000;"></div>
-        <div class="color-box" style="background-color: #00ff00;"></div>
-        <div class="color-box" style="background-color: #ffff00;"></div>
-    </br>
-        <label for="sliderBrushSize">Size of brush:</label>
-        <input type="range" id="sliderBrushSize" name="sliderBrushSize" min="1" max="10" step="1" value="1">
-        <span id="sliderBrushSizeValue">1</span>
-    </br>
-        <lable>Brush type:</lable>
-        <input type="radio" id="star" name="radioBrushType" value="star" checked>
-        <label for="star">star</label>
-        <input type="radio" id="square" name="radioBrushType" value="square">
-        <label for="star">square</label>
-    </br>
-        <label for="checkboxRandomColor">Random color:</label>
-        <input type="checkbox" id="checkboxRandomColor" name="checkboxRandomColor">
-    </br>
-        <label for="colorPickerBoard">Fill board:</label>
-        <input type="color" id="colorPickerBoard" value="#ffffff">
-    </br>
-        <label for="colorGridPickerBoard">Fill board grid:</label>
-        <input type="color" id="colorGridPickerBoard" value="#D3D3D3">
+        <div class="settingsCategory">
+            <div class="title">Brush options</div>
+            <div class="settingsOption">
+                <label for="sliderBrushSize" class="settingsLable">Size of brush:</label>
+                <div class="settingsValue">
+                    <input type="range" id="sliderBrushSize" name="sliderBrushSize" min="1" max="10" step="1" value="1">
+                    <span id="sliderBrushSizeValue">1</span>
+                </div>
+            </div>
+            <div class="settingsOption">
+                <lable class="settingsLable">Brush type:</lable>
+                <div class="settingsValue">
+                    <input type="radio" id="star" name="radioBrushType" value="star" checked>
+                    <label for="star">star</label>
+                    <input type="radio" id="square" name="radioBrushType" value="square">
+                    <label for="star">square</label>
+                </div>
+            </div>
+            <div class="settingsOption">
+                <label for="checkboxRandomColor" class="settingsLable">Random color:</label>
+                <div class="settingsValue">
+                    <input type="checkbox" id="checkboxRandomColor" name="checkboxRandomColor">
+                </div>
+            </div>
+        </div>
+
+        <div class="settingsCategory">
+            <div class="title">Board color options</div>
+            <div class="settingsOption">
+                <label for="colorPickerBoard"  class="settingsLable">Fill board:</label>
+                <div class="settingsValue">
+                    <input type="color" id="colorPickerBoard" value="#ffffff">
+                </div>
+            </div>
+            <div class="settingsOption">
+                <label for="colorGridPickerBoard"  class="settingsLable">Fill board grid:</label>
+                <div class="settingsValue">
+                    <input type="color" id="colorGridPickerBoard" value="#D3D3D3">
+                </div>
+            </div>
+        </div>
     </div>
 
     <div class="grid-container" id="gridContainer"></div>
