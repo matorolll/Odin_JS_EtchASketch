@@ -109,6 +109,17 @@ colorPickerBoard.addEventListener('input', (event) => {
 })
 
 
+//Fill board grid
+const colorGridPickerBoard = document.getElementById("colorGridPickerBoard");
+let colorGridBoard = colorGridPickerBoard.value
+colorGridPickerBoard.addEventListener('input', (event) => {
+    colorGridBoard = event.target.value;
+    const squares = document.querySelectorAll('.grid-item');
+    squares.forEach(square => {
+        square.style.border = `1px solid ${colorGridBoard}`;
+    });
+})
+
 
 
 //Mouse events
