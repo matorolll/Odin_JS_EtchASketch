@@ -1,3 +1,20 @@
+//Setting color for nav
+const colorfulText = document.getElementById('colorfulText');
+const text = colorfulText.textContent;
+colorfulText.innerHTML = '';
+
+for (const char of text) {
+  const span = document.createElement('span');
+  if (char === ' ') {
+    span.textContent = '\u00A0';
+  } else {
+    span.textContent = char;
+    span.style.color = generateRandomColor();
+  }
+  colorfulText.appendChild(span);
+}
+
+
 ////Options////
 //Number of squares
 const inputSliderSquareSize = document.getElementById('sliderSquareSize');
@@ -41,6 +58,16 @@ let thirdColor = colorPickerThird.value
 colorPickerThird.addEventListener('input', (event) => {
     thirdColor = event.target.value;
 })
+
+
+//Generating colorboxes
+const colorboxesContainer = document.getElementById("colorboxes");
+for (let i = 0; i < 24; i++) {
+    const colorBox = document.createElement("div");
+    colorBox.className = "color-box";
+    colorBox.style.backgroundColor = generateRandomColor();
+    colorboxesContainer.appendChild(colorBox);
+}
 
 
 //Quick color picker
@@ -266,7 +293,7 @@ function generateRandomColor() {
       color += letters[Math.floor(Math.random() * 16)];
     }
     return color;
-  }
+}
 
 createDrawingBoard(squareSize,boardSize)
 

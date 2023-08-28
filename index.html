@@ -6,9 +6,11 @@
     <title>Etch a Sketch</title>
     <script src="script.js" defer></script>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.cdnfonts.com/css/serious-rounded" rel="stylesheet">
+
 </head>
 <body>
-    <nav>Etch A Sketch</nav>
+    <nav id="colorfulText">Etch A Sketch</nav>
 
     <div class="slider">
         <div class="settingsCategory">
@@ -23,8 +25,8 @@
             <div class="settingsOption">
                 <label for="sliderBoardSize" class="settingsLable">Size of drawing board</label>
                 <div class="settingsValue">
-                    <input type="range" id="sliderBoardSize" name="sliderBoardSize" min="100" max="1600" step="100" value="800">
-                    <span id="sliderBoardSizeValue">800</span>
+                    <input type="range" id="sliderBoardSize" name="sliderBoardSize" min="100" max="1600" step="100" value="700">
+                    <span id="sliderBoardSizeValue">700</span>
                 </div>
             </div>
         </div>
@@ -51,13 +53,7 @@
             </div>
             <div class="settingsOption">
                 <label class="settingsLable">Quick color picker</label>
-                <div class="settingsValue">
-                    <div class="color-box" style="background-color: #ff0000;"></div>
-                    <div class="color-box" style="background-color: #00ff00;"></div>
-                    <div class="color-box" style="background-color: #ffff00;"></div>
-                    <div class="color-box" style="background-color: #0000ff;"></div>
-                    <div class="color-box" style="background-color: #ffffff;"></div>
-
+                <div class="settingsValue" id="colorboxes">
                 </div>
             </div>
         </div>
