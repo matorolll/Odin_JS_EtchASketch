@@ -175,6 +175,18 @@ document.addEventListener('mousedown', (event) => {
 });
 
 
+document.addEventListener('wheel', (event) => {
+    const delta = Math.sign(event.deltaY);
+    if (delta > 0) {
+        brushSize = parseInt(brushSize) + 1;
+    } else if (delta < 0) {
+        brushSize = parseInt(brushSize) - 1;
+    }
+    brushSize = Math.min(Math.max(brushSize, 1), 6);
+    inputBrushSize.value = brushSize;
+    outputBrushSize.textContent = `${brushSize}`;
+})
+
 
 
 ////Grid////
@@ -221,7 +233,6 @@ addEventListenerToBoard = () => {
                 changeColor(square, thirdColor)
             }
         });
-
     });
 };
 

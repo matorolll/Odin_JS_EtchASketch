@@ -1,13 +1,13 @@
 body{
-    background-color: black;
+    background-image: url('bg.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
     font-family: 'seriousr2', sans-serif;
     font-size:14px;
-
 }
 
 
 nav{
-    color:white;
     display:flex;
     justify-content:center;
     padding:0px;
@@ -47,7 +47,7 @@ nav{
     margin-left:40px;
     float: left;
 
-    background-color: gray;
+    background-color: #717171;
     justify-content: center;
 
     display:grid;
@@ -57,8 +57,7 @@ nav{
 }
 
 .grid-item{
-    border: 1px solid  rgba(211,211,211);;
-    background-color: white;
+    border: 1px solid ;
 }
 
 .color-box{
