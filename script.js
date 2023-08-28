@@ -97,6 +97,20 @@ checkboxRandomColor.addEventListener("change", function() {
 });
 
 
+//Fill entire board
+const colorPickerBoard = document.getElementById("colorPickerBoard");
+let colorBoard = colorPickerBoard.value
+colorPickerBoard.addEventListener('input', (event) => {
+    colorBoard = event.target.value;
+    const squares = document.querySelectorAll('.grid-item');
+    squares.forEach(square => {
+        square.style.backgroundColor = colorBoard;
+    });
+})
+
+
+
+
 //Mouse events
 document.addEventListener('contextmenu', (event) => {
   event.preventDefault();
