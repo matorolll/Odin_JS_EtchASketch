@@ -62,14 +62,14 @@
         <div class="settingsCategory">
             <div class="title">Brush options</div>
             <div class="settingsOption">
-                <label for="sliderBrushSize" class="settingsLable">Size of brush:</label>
+                <label for="sliderBrushSize" class="settingsLable">Size of brush</label>
                 <div class="settingsValue">
                     <input type="range" id="sliderBrushSize" name="sliderBrushSize" min="1" max="6" step="1" value="1">
                     <span id="sliderBrushSizeValue">1</span>
                 </div>
             </div>
             <div class="settingsOption">
-                <lable class="settingsLable">Brush type:</lable>
+                <lable class="settingsLable">Brush type</lable>
                 <div class="settingsValue">
                     <input type="radio" id="star" name="radioBrushType" value="star" checked>
                     <label for="star">star</label>
@@ -77,8 +77,28 @@
                     <label for="star">square</label>
                 </div>
             </div>
+
             <div class="settingsOption">
-                <label for="checkboxRandomColor" class="settingsLable">Random color:</label>
+                <label for="checkboxLightener" class="settingsLable">Lightener</label>
+                <div class="settingsValue">
+                    <input type="checkbox" id="checkboxLightener" name="checkboxLightener">
+                    <input type="range" id="sliderLightener" name="sliderLightener" min="10" max="100" step="10" value="10" style="display:none">
+                    <span id="sliderLightenerValue" style="display:none">10%</span>
+                </div>
+            </div>
+            <div class="settingsOption">
+                <label for="checkboxDarkener" class="settingsLable">Darkener</label>
+                <div class="settingsValue" >
+                    <input type="checkbox" id="checkboxDarkener" name="checkboxDarkener">
+                    <input type="range" id="sliderDarkener" name="sliderDarkener" min="10" max="100" step="10" value="10"  style="display:none">
+                    <span id="sliderDarkenerValue" style="display:none" >10%</span>
+                </div>
+            </div>
+
+
+
+            <div class="settingsOption">
+                <label for="checkboxRandomColor" class="settingsLable">Random color</label>
                 <div class="settingsValue">
                     <input type="checkbox" id="checkboxRandomColor" name="checkboxRandomColor">
                 </div>
@@ -88,13 +108,13 @@
         <div class="settingsCategory">
             <div class="title">Board color options</div>
             <div class="settingsOption">
-                <label for="colorPickerBoard"  class="settingsLable">Fill board:</label>
+                <label for="colorPickerBoard"  class="settingsLable">Fill board</label>
                 <div class="settingsValue">
                     <input type="color" id="colorPickerBoard" value="#797979">
                 </div>
             </div>
             <div class="settingsOption">
-                <label for="colorGridPickerBoard"  class="settingsLable">Fill board grid:</label>
+                <label for="colorGridPickerBoard"  class="settingsLable">Fill board grid</label>
                 <div class="settingsValue">
                     <input type="color" id="colorGridPickerBoard" value="#000000">
                 </div>

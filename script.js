@@ -112,6 +112,57 @@ radioBrushType.forEach(radio => {
 });
 
 
+
+
+//Lightener
+const checkboxLightener = document.getElementById("checkboxLightener");
+const inputSliderLightener = document.getElementById('sliderLightener');
+const outputSliderLightener = document.getElementById('sliderLightenerValue');
+let lightenerValue = inputSliderLightener.value
+let lightOption = false;
+checkboxLightener.addEventListener("change", function() {
+    if (checkboxLightener.checked) {
+        lightOption = true;
+        inputSliderLightener.style.display = ' inline-block';
+        outputSliderLightener.style.display = ' inline-block';
+    } else {   
+        lightOption = false;
+        inputSliderLightener.style.display = 'none';
+        outputSliderLightener.style.display = 'none';
+    }
+});
+inputSliderLightener.addEventListener('input', () => {
+    lightenerValue = inputSliderLightener.value
+    outputSliderLightener.textContent = `${lightenerValue}%`;
+});
+
+
+//Darkener
+const checkboxDarkener = document.getElementById("checkboxDarkener");
+const inputSliderDarkener = document.getElementById('sliderDarkener');
+const outputSliderDarkener = document.getElementById('sliderDarkenerValue');
+let darkenerValue = inputSliderDarkener.value
+let darkOption = false;
+checkboxDarkener.addEventListener("change", function() {
+    if (checkboxDarkener.checked) {
+        darkOption = true;
+        inputSliderDarkener.style.display = ' inline-block';
+        outputSliderDarkener.style.display = ' inline-block';
+    } else {   
+        darkOption = false;
+        inputSliderDarkener.style.display = 'none';
+        outputSliderDarkener.style.display = 'none';
+    }
+});
+inputSliderDarkener.addEventListener('input', () => {
+    darkenerValue = inputSliderDarkener.value
+    outputSliderDarkener.textContent = `${darkenerValue}%`;
+});
+
+
+
+
+
 //Random color checkbox
 const checkboxRandomColor = document.getElementById("checkboxRandomColor");
 let randomColor = false;
@@ -241,10 +292,19 @@ addEventListenerToBoard = () => {
 function changeColor(clickedDiv, color) {
     const allDivs = document.querySelectorAll('.grid-item');
     const clickedIndex = Array.from(allDivs).indexOf(clickedDiv);
+    const clickedDivColor = window.getComputedStyle(clickedDiv, null).getPropertyValue("background-color");
+
 
     if(randomColor){
         color = generateRandomColor();
     }
+    if(darkOption){
+        color = darkenColor(clickedDivColor, darkenerValue)
+    }
+    if(lightOption){
+        color = lightenColor(clickedDivColor, lightenerValue)
+    }
+    
 
     function colorAdjacentDivs(index, depth) {
         let adjacentIndices = []
@@ -295,6 +355,32 @@ function rgbToHex(rgbColor) {
     const b = parseInt(rgbValues[2]);
     const hexValue = ((r << 16) | (g << 8) | b).toString(16).padStart(6, '0');
     return '#' + hexValue.toUpperCase();
+}
+
+//function hexToRgb(hex) {
+ //   const bigint = parseInt(hex.slice(1), 16);
+ //   const r = (bigint >> 16) & 255;
+//    const g = (bigint >> 8) & 255;
+ //   const b = bigint & 255;
+//    return [r, g, b];
+//}
+
+
+//TOCHANGEEEEEEEEEEEEEEEEEEEEEEEEEEE
+function lightenColor(color, percent) {
+    var rgbArray = color.replace(/[^\d,]/g, '').split(',');
+        var newRgbArray = rgbArray.map(function(value) {
+        return Math.floor(value * (1 + percent / 100));
+    });
+    return 'rgb(' + newRgbArray.join(',') + ')';
+}
+
+function darkenColor(color, percent) {
+    var rgbArray = color.replace(/[^\d,]/g, '').split(',');
+        var newRgbArray = rgbArray.map(function(value) {
+        return Math.floor(value * (1 - percent / 100));
+    });
+    return 'rgb(' + newRgbArray.join(',') + ')';
 }
 
 function generateRandomColor() {
