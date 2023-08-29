@@ -199,6 +199,23 @@ colorGridPickerBoard.addEventListener('input', (event) => {
 })
 
 
+//Showing grid pattern
+const checkboxShowGrid = document.getElementById("checkboxShowGrid");
+checkboxShowGrid.addEventListener("change", function() {
+    const squares = document.querySelectorAll('.grid-item');
+    if (checkboxShowGrid.checked) {
+        console.log("is pciked")
+        squares.forEach(square => {
+            square.style.border = `1px solid ${colorGridBoard}`;
+        });
+    } else {   
+        console.log("is not pciked")
+        squares.forEach(square => {
+            square.style.border = `0px`;
+        });
+    }
+});
+
 
 //Mouse events
 document.addEventListener('contextmenu', (event) => {
