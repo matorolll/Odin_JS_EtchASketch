@@ -309,18 +309,6 @@ addEventListenerToBoard = () => {
 function changeColor(clickedDiv, color) {
     const allDivs = document.querySelectorAll('.grid-item');
     const clickedIndex = Array.from(allDivs).indexOf(clickedDiv);
-    const clickedDivColor = window.getComputedStyle(clickedDiv, null).getPropertyValue("background-color");
-
-
-    //if(randomColor){
-    //    color = generateRandomColor();
-    //}    
-    //if(darkOption){
-    //   color = darkenColor(clickedDivColor, darkenerValue)
-    //}
-    //if(lightOption){
-    //    color = lightenColor(clickedDivColor, lightenerValue)
-    //}
 
     function colorAdjacentDivs(index, depth) {
         let adjacentIndices = []
@@ -388,14 +376,15 @@ function rgbToHex(rgbColor) {
     return '#' + hexValue.toUpperCase();
 }
 
-//function hexToRgb(hex) {
- //   const bigint = parseInt(hex.slice(1), 16);
- //   const r = (bigint >> 16) & 255;
-//    const g = (bigint >> 8) & 255;
- //   const b = bigint & 255;
-//    return [r, g, b];
-//}
-
+//notInUse
+function hexToRgb(hex) {
+    const bigint = parseInt(hex.slice(1), 16);
+    const r = (bigint >> 16) & 255;
+    const g = (bigint >> 8) & 255;
+   const b = bigint & 255;
+    return [r, g, b];
+}
+//
 
 function lightenColor(color, percent) {
     var rgbArray = color.replace(/[^\d,]/g, '').split(',');
