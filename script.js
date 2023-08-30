@@ -312,20 +312,35 @@ function changeColor(clickedDiv, color) {
     const clickedDivColor = window.getComputedStyle(clickedDiv, null).getPropertyValue("background-color");
 
 
-    if(randomColor){
-        color = generateRandomColor();
-    }
-    if(darkOption){
-        color = darkenColor(clickedDivColor, darkenerValue)
-    }
-    if(lightOption){
-        color = lightenColor(clickedDivColor, lightenerValue)
-    }
-    
+    //if(randomColor){
+    //    color = generateRandomColor();
+    //}    
+    //if(darkOption){
+    //   color = darkenColor(clickedDivColor, darkenerValue)
+    //}
+    //if(lightOption){
+    //    color = lightenColor(clickedDivColor, lightenerValue)
+    //}
 
     function colorAdjacentDivs(index, depth) {
         let adjacentIndices = []
         if (depth <= 0){
+            if(randomColor){
+                color = generateRandomColor();
+                allDivs[index].style.backgroundColor = color;
+            } 
+            if(lightOption){
+                colorOfSingleDiv = window.getComputedStyle(allDivs[index], null).getPropertyValue("background-color");
+                color = lightenColor(colorOfSingleDiv, lightenerValue)
+                allDivs[index].style.backgroundColor = color;
+            }
+
+            if(darkOption){
+                colorOfSingleDiv = window.getComputedStyle(allDivs[index], null).getPropertyValue("background-color");
+                color = darkenColor(colorOfSingleDiv, darkenerValue)
+                allDivs[index].style.backgroundColor = color;
+            }
+
             allDivs[index].style.backgroundColor = color;
             return;
         } 
@@ -346,8 +361,8 @@ function changeColor(clickedDiv, color) {
                 index - 1,
                 index + 1,
 
-                index - squareSize -1,
-                index + squareSize * 1 -1,
+                index - squareSize - 1,
+                index + squareSize * 1 - 1,
                 index - squareSize + 1,
                 index + squareSize * 1 + 1
             );
@@ -355,7 +370,6 @@ function changeColor(clickedDiv, color) {
 
         adjacentIndices.forEach(adjIndex => {
             if (adjIndex >= 0 && adjIndex < allDivs.length) {
-                allDivs[adjIndex].style.backgroundColor = color;
                 colorAdjacentDivs(adjIndex, depth - 1);
             }
         });
@@ -383,7 +397,6 @@ function rgbToHex(rgbColor) {
 //}
 
 
-//TOCHANGEEEEEEEEEEEEEEEEEEEEEEEEEEE
 function lightenColor(color, percent) {
     var rgbArray = color.replace(/[^\d,]/g, '').split(',');
         var newRgbArray = rgbArray.map(function(value) {
